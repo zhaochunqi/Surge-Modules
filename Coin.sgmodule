@@ -1,0 +1,10 @@
+#!name=交易所 Module
+#!desc=交易所去代理 Module
+
+[Rule]
+DOMAIN-SUFFIX, ftx.com, DIRECT
+DOMAIN-SUFFIX, mxc.com, DIRECT
+DOMAIN-SUFFIX, mxc.io, DIRECT
+DOMAIN-SUFFIX, binancezh.cc, DIRECT
+DOMAIN-SUFFIX, deribit.com, DIRECT
+DOMAIN-SUFFIX, binance.com, REJECT

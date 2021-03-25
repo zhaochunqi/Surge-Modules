@@ -2,8 +2,8 @@
 #!desc=翻回家里专用 Module
 
 [General]
-tun-included-routes = 192.168.31.168/32,192.168.31.1/32
+tun-included-routes = %APPEND% 192.168.124.168/32,192.168.124.1/32
 
 [Rule]
-DOMAIN,nas.zhaochunqi.com,Home
-IP-CIDR,192.168.31.1/24,Home
+DOMAIN,  nas.zhaochunqi.com, Home
+IP-CIDR, 192.168.124.1/24, Home

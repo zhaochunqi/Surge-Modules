@@ -1,0 +1,10 @@
+#!name=禁用直播 Module
+#!desc=减少分心，不看直播 Module
+
+[Host]
+*.test = 127.0.0.1
+*.tv = 127.0.0.1
+huya.com = 127.0.0.1
+*.huya.com = 127.0.0.1
+douyu.com = 127.0.0.1
+*.douyu.com = 127.0.0.1

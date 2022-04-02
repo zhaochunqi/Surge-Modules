@@ -1,12 +1,12 @@
 #!name=交易所 Module
-#!desc=交易所去代理 Module
+#!desc=交易所挂代理 Module
 
 [Rule]
-DOMAIN-SUFFIX, ftx.com, DIRECT
-# DOMAIN-SUFFIX, mxc.com, DIRECT
-# DOMAIN-SUFFIX, mxc.io, DIRECT
-DOMAIN-SUFFIX, binancezh.cc, DIRECT
-DOMAIN-SUFFIX, binancezh.co, DIRECT
-DOMAIN-SUFFIX, binancezh.sh, DIRECT
-DOMAIN-SUFFIX, deribit.com, DIRECT
-DOMAIN-SUFFIX, binance.com, DIRECT
+DOMAIN-SUFFIX, ftx.com, COIN_PROXY
+# DOMAIN-SUFFIX, mxc.com, COIN_PROXY
+# DOMAIN-SUFFIX, mxc.io, COIN_PROXY
+DOMAIN-SUFFIX, binancezh.cc, COIN_PROXY
+DOMAIN-SUFFIX, binancezh.co, COIN_PROXY
+DOMAIN-SUFFIX, binancezh.sh, COIN_PROXY
+DOMAIN-SUFFIX, deribit.com, COIN_PROXY
+DOMAIN-SUFFIX, binance.com, COIN_PROXY

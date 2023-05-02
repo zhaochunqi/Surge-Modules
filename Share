@@ -1,0 +1,21 @@
+[Module]
+name = Redirect Share unlock
+description = Ignore all query parameters in a URL and redirect to a fixed URL.
+
+[Script]
+script-1 = function onRequest(request, response) {
+  const url = new URL(request.url);
+  const redirectUrl = "https://raw.githubusercontent.com/make-share-great-again/activecode/master/bind";
+  
+  // 重定向请求
+  response.statusCode = 302;
+  response.setHeader("Location", redirectUrl);
+  response.end();
+  
+  $done(response);
+}
+
+[Rule]
+RULE-NAME = Ignore query params
+URL-REGEX = ^http://api\.yuhengye\.com/activecode/bind$
+SCRIPT-LIST = script-1

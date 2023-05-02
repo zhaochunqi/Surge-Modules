@@ -1,21 +1,28 @@
 [Module]
-name = Ignore Query Params
-description = Ignore all query parameters in a URL and redirect to a fixed URL.
+name = Modify Response Data
+description = Modify the response data for a specific URL.
 
 [Script]
-ignore-query.js = <inline script>
+modify-response.js = <inline script>
 function onRequest(request, response) {
   const url = new URL(request.url);
-  const redirectUrl = "https://raw.githubusercontent.com/make-share-great-again/activecode/master/bind";
   
-  // 重定向请求
-  response.statusCode = 302;
-  response.setHeader("Location", redirectUrl);
-  response.end();
-  
-  $done(response);
+  // 匹配请求 URL
+  if (url.pathname === "/activecode/bind" && request.method === "POST") {
+    // 修改响应内容
+    response.statusCode = 200;
+    const responseData = {"code":0,"data":{"code":"夹总身体健康","activated":true,"orderId":"","activeCount":0,"timestamp":4765132800000,"s_expire":false}};
+    response.setHeader("Content-Type", "application/json");
+    response.setHeader("Content-Length", Buffer.byteLength(JSON.stringify(responseData)));
+    response.end(JSON.stringify(responseData));
+    
+    $done(response);
+  } else {
+    $done({});
+  }
 }
 </inline>
 
 [Rule]
-DOMAIN-SUFFIX,api.yuhengye.com,SCRIPT-SET=ignore-query.js,RESPONSE-STATUS=^200$,REDIRECT=https://raw.githubusercontent.com/make-share-great-again/activecode/master/bind 302
+DOMAIN-SUFFIX,api.yuhengye.com,SCRIPT-SET=modify-response.js
+URL-REGEX,^http:\/\/api\.yuhengye\.com\/activecode\/bind$,FINAL,HTTP-RESPONSE ^HTTP\/\d+\.\d+ 200$ STATUS 200 BODY .* MODIFY-RESPONSE "{\"code\":0,\"data\":{\"code\":\"夹总身体健康\",\"activated\":true,\"orderId\":\"\",\"activeCount\":0,\"timestamp\":4765132800000,\"s_expire\":false}}"

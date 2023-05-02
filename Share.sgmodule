@@ -16,6 +16,5 @@ script-1 = function onRequest(request, response) {
 }
 
 [Rule]
-RULE-NAME = Ignore query params
 URL-REGEX = ^http://api\.yuhengye\.com/activecode/bind$
 SCRIPT-LIST = script-1

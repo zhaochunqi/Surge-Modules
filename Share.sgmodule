@@ -1,9 +1,10 @@
 [Module]
-name = Redirect Share unlock
+name = Ignore Query Params
 description = Ignore all query parameters in a URL and redirect to a fixed URL.
 
 [Script]
-script-1 = function onRequest(request, response) {
+ignore-query.js = <inline script>
+function onRequest(request, response) {
   const url = new URL(request.url);
   const redirectUrl = "https://raw.githubusercontent.com/make-share-great-again/activecode/master/bind";
   
@@ -14,7 +15,11 @@ script-1 = function onRequest(request, response) {
   
   $done(response);
 }
+</inline>
 
 [Rule]
-URL-REGEX = ^http://api\.yuhengye\.com/activecode/bind$
-SCRIPT-LIST = script-1
+REQUEST-HEADER = ^Host api\.yuhengye\.com$
+URL-REGEX = ^/activecode/bind\?
+SCRIPT-SET = ignore-query.js
+RESPONSE-STATUS = ^200$
+REDIRECT = https://raw.githubusercontent.com/make-share-great-again/activecode/master/bind 302

@@ -18,8 +18,4 @@ function onRequest(request, response) {
 </inline>
 
 [Rule]
-REQUEST-HEADER = ^Host api\.yuhengye\.com$
-URL-REGEX = ^/activecode/bind\?
-SCRIPT-SET = ignore-query.js
-RESPONSE-STATUS = ^200$
-REDIRECT = https://raw.githubusercontent.com/make-share-great-again/activecode/master/bind 302
+DOMAIN-SUFFIX,api.yuhengye.com,SCRIPT-SET=ignore-query.js,RESPONSE-STATUS=^200$,REDIRECT=https://raw.githubusercontent.com/make-share-great-again/activecode/master/bind 302

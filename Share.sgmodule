@@ -1,12 +1,11 @@
+#!name=Mock API for api.yuhengye.com
+#!desc=拦截所有发往 http://api.yuhengye.com 的请求，直接返回固定 JSON 响应，无需真实后端。
+
 [General]
 requires-surge-version = 4.0
 
-[MITM]
-hostname = api.yuhengye.com
-
 [Rewrite]
-# 拦截所有 api.yuhengye.com 的请求，返回固定 JSON
-https?://api\.yuhengye\.com/.* - response 'HTTP/1.1 200 OK
+^http://api\.yuhengye\.com/.* - response 'HTTP/1.1 200 OK
 Content-Type: application/json
 Connection: close
 

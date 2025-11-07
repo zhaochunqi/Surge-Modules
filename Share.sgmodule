@@ -1,15 +1,5 @@
 #!name=Mock API for api.yuhengye.com
-#!desc=拦截所有发往 http://api.yuhengye.com 的请求，返回固定 JSON。注意：需确保该域名未被其他规则提前直连。
+#!desc=拦截所有发往 http://api.yuhengye.com/activecode/bind 的请求，返回固定 JSON。注意：需确保该域名未被其他规则提前直连。
 
-[General]
-requires-surge-version = 4.0
-
-[Rule]
-DOMAIN-SUFFIX,api.yuhengye.com,REJECT
-
-[Rewrite]
-^http://api\.yuhengye\.com/.* - response 'HTTP/1.1 200 OK
-Content-Type: application/json
-Connection: close
-
-{"code":0,"data":{"code":"夹总身体健康","activated":true,"orderId":"","activeCount":0,"timestamp":4765132800000,"s_expire":false}}'
+[URL Rewrite]
+http://api.yuhengye.com/activecode/bind https://raw.githubusercontent.com/make-share-great-again/activecode/refs/heads/master/bind header

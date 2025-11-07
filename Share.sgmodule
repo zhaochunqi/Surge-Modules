@@ -1,28 +1,13 @@
-[Module]
-name = Modify Response Data
-description = Modify the response data for a specific URL.
+[General]
+requires-surge-version = 4.0
 
-[Script]
-modify-response.js = <inline script>
-function onRequest(request, response) {
-  const url = new URL(request.url);
-  
-  // 匹配请求 URL
-  if (url.pathname === "/activecode/bind" && request.method === "POST") {
-    // 修改响应内容
-    response.statusCode = 200;
-    const responseData = {"code":0,"data":{"code":"夹总身体健康","activated":true,"orderId":"","activeCount":0,"timestamp":4765132800000,"s_expire":false}};
-    response.setHeader("Content-Type", "application/json");
-    response.setHeader("Content-Length", Buffer.byteLength(JSON.stringify(responseData)));
-    response.end(JSON.stringify(responseData));
-    
-    $done(response);
-  } else {
-    $done({});
-  }
-}
-</inline>
+[MITM]
+hostname = api.yuhengye.com
 
-[Rule]
-DOMAIN-SUFFIX,api.yuhengye.com,SCRIPT-SET=modify-response.js
-URL-REGEX,^http:\/\/api\.yuhengye\.com\/activecode\/bind$,FINAL,HTTP-RESPONSE ^HTTP\/\d+\.\d+ 200$ STATUS 200 BODY .* MODIFY-RESPONSE "{\"code\":0,\"data\":{\"code\":\"夹总身体健康\",\"activated\":true,\"orderId\":\"\",\"activeCount\":0,\"timestamp\":4765132800000,\"s_expire\":false}}"
+[Rewrite]
+# 拦截所有 api.yuhengye.com 的请求，返回固定 JSON
+https?://api\.yuhengye\.com/.* - response 'HTTP/1.1 200 OK
+Content-Type: application/json
+Connection: close
+
+{"code":0,"data":{"code":"夹总身体健康","activated":true,"orderId":"","activeCount":0,"timestamp":4765132800000,"s_expire":false}}'

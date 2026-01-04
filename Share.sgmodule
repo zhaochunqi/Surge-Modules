@@ -1,5 +1,0 @@
-#!name=Mock API for api.yuhengye.com
-#!desc=拦截所有发往 http://api.yuhengye.com/activecode/bind 的请求，返回固定 JSON。
-
-[Script]
-api-yuhengye-com = type=http-request,pattern=^http://api\.yuhengye\.com/activecode/bind,script-path=https://raw.githubusercontent.com/zhaochunqi/Surge-Modules/main/scripts/api-yuhengye-com.js

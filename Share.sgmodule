@@ -1,5 +1,5 @@
 #!name=Mock API for api.yuhengye.com
-#!desc=拦截所有发往 http://api.yuhengye.com/activecode/bind 的请求，返回固定 JSON。注意：需确保该域名未被其他规则提前直连。
+#!desc=拦截所有发往 http://api.yuhengye.com/activecode/bind 的请求，返回固定 JSON。
 
-[URL Rewrite]
-http://api.yuhengye.com/activecode/bind https://raw.githubusercontent.com/make-share-great-again/activecode/refs/heads/master/bind header
+[Script]
+api-yuhengye-com = type=http-request,pattern=^http://api\.yuhengye\.com/activecode/bind,script-path=https://raw.githubusercontent.com/zhaochunqi/Surge-Modules/main/scripts/api-yuhengye-com.js
